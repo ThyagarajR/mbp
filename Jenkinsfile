@@ -1,13 +1,37 @@
 pipeline{
   agent any
     stages{
-      stage("Hello"){
+      stage("Maven Build"){
         when{
           branch "develop"
         }
       steps{
-        echo "This is Multi branch PIpeline"
+        echo "maven clean package....."
       }
     }
+    stage("Solar Analysis"){
+        when{
+          branch "develop"
+        }
+      steps{
+        echo "Sonar analysis....."
+      }
+    }
+  stage("Dev deploy"){
+        when{
+          branch "develop"
+        }
+        steps{
+          echo "deploying to dev......"
+        }
   }
+  stage("Prod deploy"){
+        when{
+          branch "main"
+        }
+        steps{
+          echo "deploying to prod......"
+    }
+}
+    }
 }
